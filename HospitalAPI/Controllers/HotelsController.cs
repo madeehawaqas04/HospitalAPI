@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using HospitalAPI.Core.DbContext;
 using HospitalAPI.Core.Entities;
+using Microsoft.AspNetCore.Authorization;
+using HospitalAPI.Core.OtherObjects;
 
 namespace HospitalAPI.Controllers
 {
@@ -24,6 +26,7 @@ namespace HospitalAPI.Controllers
 
         // GET: api/Hotels
         [HttpGet]
+        [Authorize(Roles = StaticUserRoles.USER)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         public async Task<ActionResult<IEnumerable<Hotel>>> GetHotels()
         {
@@ -32,6 +35,7 @@ namespace HospitalAPI.Controllers
 
         // GET: api/Hotels/5
         [HttpGet("{id}")]
+        [Authorize(Roles = StaticUserRoles.ADMIN)]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
