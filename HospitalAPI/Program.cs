@@ -1,4 +1,5 @@
 using HospitalAPI.Core.DbContext;
+using HospitalAPI.Core.Entities;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -19,9 +20,15 @@ builder.Services.AddDbContext<ApplicationDbContext>(options => options.UseSqlSer
     ));
 
 
+//// Add Identity
+//builder.Services
+//    .AddIdentity<IdentityUser, IdentityRole>()
+//    .AddEntityFrameworkStores<ApplicationDbContext>()
+//    .AddDefaultTokenProviders();
+
 // Add Identity
 builder.Services
-    .AddIdentity<IdentityUser, IdentityRole>()
+    .AddIdentity<ApplicationUser, IdentityRole>()
     .AddEntityFrameworkStores<ApplicationDbContext>()
     .AddDefaultTokenProviders();
 
