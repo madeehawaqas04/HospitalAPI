@@ -1,5 +1,7 @@
 using HospitalAPI.Core.DbContext;
 using HospitalAPI.Core.Entities;
+using HospitalAPI.Core.Interfaces;
+using HospitalAPI.Core.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -75,7 +77,12 @@ builder.Services
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+// Inject app Dependencies (Dependency Injection)
 
+builder.Services.AddScoped<IAuthService, AuthService>();
+
+
+// pipeline
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
